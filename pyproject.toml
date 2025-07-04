@@ -2,7 +2,7 @@
 name = "user-service"
 version = "0.1.0"
 description = "User service for a microservices architecture."
-authors = ["Your Name <you@example.com>"]
+authors = ["Amir Sadati eng.amirh.sadati@gmail.com"]
 
 [tool.poetry.dependencies]
 python = "^3.11"

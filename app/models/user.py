@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship
 
+from .role import user_roles
+
 from app.db.base import Base
 
 
@@ -15,3 +17,6 @@ class User(Base):
     is_superuser = Column(Boolean(), default=False)
 
     profile = relationship("Profile", back_populates="user", uselist=False)
+    roles = relationship(
+        "Role", secondary=user_roles, back_populates="users", lazy="selectin"
+    )
