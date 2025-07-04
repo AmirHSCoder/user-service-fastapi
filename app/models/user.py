@@ -1,5 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy.orm import relationship
+
 from app.db.base import Base
+
 
 class User(Base):
     __tablename__ = "users"
@@ -10,3 +13,5 @@ class User(Base):
     hashed_password = Column(String(255), nullable=False)
     is_active = Column(Boolean(), default=True)
     is_superuser = Column(Boolean(), default=False)
+
+    profile = relationship("Profile", back_populates="user", uselist=False)

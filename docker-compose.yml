@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: user_service_db
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_SERVER: db
+      POSTGRES_DB: user_service_db
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+

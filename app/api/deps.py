@@ -5,7 +5,8 @@ from jose import jwt, JWTError
 from pydantic import ValidationError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app import crud, models, schemas
+from app import crud, models
+from app.api.v1 import schemas
 from app.core.config import settings
 from app.db.session import AsyncSessionLocal
 
