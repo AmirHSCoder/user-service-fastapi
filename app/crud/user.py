@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
 from app.models.user import User
+from app.models.role import Role
 from app.api.v1.schemas.user import UserCreate, UserUpdate
 from app.core.security import get_password_hash, verify_password
 
@@ -45,6 +46,15 @@ class CRUDUser:
         if not verify_password(password, user.hashed_password):
             return None
         return user
+
+    async def add_role(self, db: AsyncSession, *, user: User, role: Role) -> User:
+        user.roles.append(role)
+        await db.commit()
+        await db.refresh(user)
+        return user
+
+    def has_role(self, user: User, role_name: str) -> bool:
+        return any(r.name == role_name for r in user.roles)
 
 
 user = CRUDUser()

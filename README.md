@@ -2,6 +2,10 @@
 
 This is a simple FastAPI based microservice providing user management and profile features. It demonstrates database per service, clean architecture ideas and supports JWT authentication with access and refresh tokens.
 
+The service now includes a minimal role based access control (RBAC) system. Roles
+can be created and assigned to users and certain endpoints require the `admin`
+role.
+
 ## Development
 
 ### Requirements
